@@ -23,7 +23,7 @@ gulp.task('default', function (callback) {
 
 /* SASS Compile */
 gulp.task('sass', function(){
-    return gulp.src('app/scss/*.scss')
+    return gulp.src('app/scss/main.scss')
         .pipe(sass())
         .pipe(gulp.dest('app/css'))
         .pipe(browserSync.reload({
@@ -74,7 +74,7 @@ gulp.task('fonts', function() {
 });
 
 /* Clean:dist */
-gulp.task('clean:dist', function() {
+gulp.task('clean', function() {
     return del.sync('dist');
 });
 
@@ -85,8 +85,8 @@ gulp.task('cache:clear', function (callback) {
 
 /* Build */
 gulp.task('build', function (callback) {
-    runSequence('clean:dist', 
-      ['sass', 'useref', 'images', 'fonts'],
+    runSequence('clean', 
+                ['sass', 'useref', 'images', 'fonts'],
       callback
     )
 });
